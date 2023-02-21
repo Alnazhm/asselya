@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+{% for r in requests %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{r.nickname}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{r.weight}}</h6>
+    <p class="card-text">{{r.description}}</p>
+    <p class="card-text">{{r.volume}}</p>
+    <p class="card-text">{{r.send_date}}</p>
+    <p class="card-text">{{r.place}}</p>
+    <a href="#" class="card-link"></a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+{% endfor %}
+{%endblock%}
