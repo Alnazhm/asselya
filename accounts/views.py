@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.forms import LoginForm
 from accounts.forms import CustomUserCreationForm, PasswordChangeForm
 from requests.models import Request
+from django.core.mail import send_mail
 
 class IndexView(ListView):
     template_name = 'index.html'
@@ -57,9 +58,15 @@ class RegisterView(CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('email')
+            pswrd = form.cleaned_data.get('password')
             user = form.save()
             user.username = username
             user = form.save()
+            subject = "Поздравляем с успешной регистрацией на наш сайт"
+            msg = f'Ваш логин для входа - {username} и пароль - {pswrd}'
+            from_email = 'lgscoompany@gmail.com'
+            print(subject, msg, from_email)
+            send_mail(subject, msg, from_email, [username])
             login(request, user)
             return redirect('index')
         context = {}
