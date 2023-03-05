@@ -1,67 +1,272 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %} Blog {% endblock%}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-{% block menu %}
-     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container">
-  <a class="navbar-brand" style="margin-right: 450px;font-weight: bold; color: black;" href="{% url 'index' %}">Главная</a>
-         <a class="navbar-brand" style="margin-right: 30px;color: black; text-decoration: underline;" href="#">Как это работает?</a>
-        {% if request.user.is_authenticated %}
-      <a class="navbar-brand" style="margin-left: 20px;color: black;text-decoration: underline;" href="{% url 'create_request' %}">Создать запрос</a>
-        <a class="navbar-brand" style="margin-left: 20px;color: black;text-decoration: underline;" href="{% url 'my_requests' %}">Мои запросы</a>
-        {% endif %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>potoub</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   {% block menu %}
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <div class="wrapper">
+      <!-- end loader -->
+      <div class="sidebar">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+            <div id="dismiss">
+               <i class="fa fa-arrow-left"></i>
+            </div>
+            <ul class="list-unstyled components">
+               <li class="active"> <a href="#">Home</a> </li>
+               <li><a href="#about">About </a> </li>
+               <li><a href="#work">Work</a> </li>
+               <li><a href="#contact">Contact </a> </li>
+            </ul>
+         </nav>
+      </div>
+      <div id="content">
+         <!-- header -->
+         <header>
+            <!-- header inner -->
+            <div class="header">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full pb-5">
+                           <div class="center-desk">
+                              <div class="logo">
+                                 <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                        <ul class="btn">
 
-         {% if user.is_authenticated %}
-               <a class="nav-item nav-link">
-                   <form action="{% url 'logout' %}?next={{ request.get_full_path }}" method="post">
-                    {% csrf_token %}
-                    <input class= "btn btn-info" type="submit" value="Выйти">
-                </form><span class="sr-only">(current)</span></a>
+                        {% if not request.user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'login' %}?next={{ request.get_full_path }}" role="button">
+                                        Войти
+                                </a>
+                            </li>
+                              <li><a >
+                                   <form action="{% url 'register' %}" method="post">
+                                      {% csrf_token %}
+                                       <input class= "btn btn-info" type="submit" value="Зарегистрироваться">
+                                   </form>
+                              </a></li>
+                            
 
-        <li class="nav-item active ">
-            <p class="nav-link" style="margin-top: 15px;">
-                Приветсвую - {{ user.username }}
-            </p>
-        </li>
 
-            {% else %}
-             <li class="nav-item nav-link ">
-                 <a class="nav-link " style="margin-top: 7px; margin-bottom: 5px;" href="{% url 'login' %}?next={{ request.get_full_path }}" role="button">Войти<span class="sr-only">(current)</span>
-                 </a>
-             </li>
-            <li class="nav-item nav-link ">
-                   <a class="nav-link">
-                       <form action="{% url 'register' %}" method="post">
-                        {% csrf_token %}
-                        <input class= "btn btn-info" type="submit" value="Зарегистрироваться">
-                    </form>
-                       <span class="sr-only">(current)</span>
-                   </a>
-                </li>
+                        {% endif %}
+                            {% if request.user.is_authenticated %}
 
-        {% endif %}
+                                  <li class="nav-item active ">
+                                     <p class="nav-link" style="margin-top: 15px;">
+                                         Вы в системе под логином {{ user.username }}
+                                     </p>
+                                  </li>
 
-    </div>
-  </div>
-    </div>
-     </nav>
-<br>
- {% endblock %}
-<div class="container">
-    {% block content %} {% endblock %}
-</div>
-</body>
+
+                                <li>
+                                <a href="{% url 'create_request' %}">
+                                     Создать запрос
+                                </a>
+                                </li>
+                                <li>
+                                <a href="{% url 'my_requests' %}">
+                                      Мои запросы
+                                </a>
+                                </li>
+                                 <li>
+                                   <a >
+                                         <form action="{% url 'logout' %}?next={{ request.get_full_path }}" method="post">
+                                                 {% csrf_token %}
+                                         <input class= "btn btn-info" type="submit" value="Выйти">
+                                   </form><span class="sr-only">(current)</span></a>
+                                 </li>
+
+
+                            {% endif %}
+
+                           <li><button type="button" id="sidebarCollapse">
+                              <img src="{% static 'images/menu_icon.png' %}" alt="#" />
+                              </button>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+          {% endblock %}
+   <br>
+   <br>
+   <br>
+   <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+   <div class="container">
+       {% block content %} {% endblock %}      <!-- end header inner -->
+   </div>
+     <br>
+     <br>
+     <br>
+     <br>
+      <br>
+      <br>
+      <br>  
+      <br>
+
+   <!-- end header -->
+         <!-- banner -->
+
+
+         <!--  footer -->
+         <footer>
+            <div class="footer">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="row">
+                           <div class="col-md-8 col-sm-6">
+                              <div class="address">
+                                 <h3>Address </h3>
+                              </div>
+                              <ul class="location_icon">
+                                 <li>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, </li>
+                              </ul>
+                           </div>
+                           <div class="col-md-4 col-sm-6">
+                              <div class="address">
+                                 <h3>Links</h3>
+                                 <ul class="Menu_footer">
+                                    <li class="active"> <a href="#">Home</a> </li>
+                                    <li><a href="#about">About </a> </li>
+                                    <li><a href="#work">Work</a> </li>
+                                    <li><a href="#contact">Contact </a> </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="row">
+                           <div class="col-md-5 col-sm-6">
+                              <div class="address">
+                                 <h3>Follow Us</h3>
+                              </div>
+                              <ul class="social_icon">
+                                 <li><a href="#">Facebook <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                 <li><a href="#"> Twitter<i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                 <li><a href="#"> Linkedin<i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                                 <li><a href="#"> Youtube<i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                                 <li><a href="#"> Instagram<i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                              </ul>
+                           </div>
+                           <div class="col-md-7 col-sm-6">
+                              <div class="address">
+                                 <h3>Newsletter </h3>
+                              </div>
+                              <form class="bottom_form">
+                                 <input class="enter" placeholder="Enter Your Email" type="text" name="Enter Your Email">
+                                 <button class="sub_btn">subscribe</button>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="copyright">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <p>Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free  html Templates</a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </footer>
+         <!-- end footer -->
+      </div>
+      <div class="overlay"></div>
+      <!-- Javascript files-->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %} "></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+      <!-- sidebar -->
+      <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+      <script type="text/javascript">
+         $(document).ready(function() {
+             $("#sidebar").mCustomScrollbar({
+                 theme: "minimal"
+             });
+         
+             $('#dismiss, .overlay').on('click', function() {
+                 $('#sidebar').removeClass('active');
+                 $('.overlay').removeClass('active');
+             });
+         
+             $('#sidebarCollapse').on('click', function() {
+                 $('#sidebar').addClass('active');
+                 $('.overlay').addClass('active');
+                 $('.collapse.in').toggleClass('in');
+                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+             });
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+             $(".fancybox").fancybox({
+                 openEffect: "none",
+                 closeEffect: "none"
+             });
+         
+             $(".zoom").hover(function() {
+         
+                 $(this).addClass('transition');
+             }, function() {
+         
+                 $(this).removeClass('transition');
+             });
+         });
+      </script>
+   </body>
 </html>
+

@@ -16,8 +16,8 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email','password', 'password_confirm')
-        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Почта'}
+        fields = ('first_name', 'email', 'password', 'password_confirm')
+        labels = {'first_name': 'Имя', 'email': 'Почта'}
 
     def clean(self):
         cleaned_data = super().clean()
@@ -37,8 +37,8 @@ class CustomUserCreationForm(forms.ModelForm):
 class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
-        labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+        fields = ('first_name', 'email')
+        labels = {'first_name': 'Имя', 'email': 'Email'}
 
 
 class PasswordChangeForm(forms.ModelForm):
