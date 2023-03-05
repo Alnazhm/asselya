@@ -107,6 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'lgscoompany@gmail.com'
+EMAIL_HOST_PASSWORD = 'orhkmeuofzoulvzb'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
 LANGUAGE_CODE = 'en-us'
 
 STATIC_URL = "static/"
