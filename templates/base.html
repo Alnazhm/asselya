@@ -47,10 +47,10 @@
                <i class="fa fa-arrow-left"></i>
             </div>
             <ul class="list-unstyled components">
-               <li class="active"> <a href="#">Home</a> </li>
-               <li><a href="#about">About </a> </li>
-               <li><a href="#work">Work</a> </li>
-               <li><a href="#contact">Contact </a> </li>
+               <li class="active"> <a href="{% url 'index' %}">Главная</a> </li>
+               <li><a href="#about">О нас </a> </li>
+               <li><a href="#work">Как это работает?</a> </li>
+               <li><a href="#contact">Контакты </a> </li>
             </ul>
          </nav>
       </div>
@@ -61,16 +61,16 @@
             <div class="header">
                <div class="container-fluid">
                   <div class="row">
-                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col logo_section">
                         <div class="full pb-5">
                            <div class="center-desk">
                               <div class="logo">
-                                 <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
+                                 <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10">
                         <ul class="btn">
 
                         {% if not request.user.is_authenticated %}
@@ -90,7 +90,9 @@
 
                         {% endif %}
                             {% if request.user.is_authenticated %}
-
+                                  <li>
+                                  <a href="{% url 'index' %}">Главная</a>
+                                  </li>
                                   <li class="nav-item active ">
                                      <p class="nav-link" style="margin-top: 15px;">
                                          Вы в системе под логином {{ user.username }}
