@@ -62,13 +62,7 @@
                <div class="container-fluid">
                   <div class="row">
                      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col logo_section">
-                        <div class="full pb-5">
-                           <div class="center-desk">
-                              <div class="logo">
-                                 <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
-                              </div>
-                           </div>
-                        </div>
+
                      </div>
                      <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10">
                         <ul class="btn">
@@ -142,6 +136,47 @@
     <br>
 
    <div class="container">
+   <!-- about -->
+         <div id="about"  class="about" >
+            <div class="container-fluid">
+               <div class="row d_flex">
+                  <div class="col-md-5">
+                     <div class="about_img">
+                        <figure><img src="{% static 'images/about_img.jpeg' %}" alt="#"/></figure>
+                     </div>
+                  </div>
+                  <div class="col-md-7">
+                     <div class="titlepage" >
+                        <h2>О <span class="blu">нас</span></h2>
+                        <p>В наши дни очень актуальна тема развозки с Китая в Казахстан.  А заполнить контейнера это нынешная проблема. Для того чтобы  облегчить и быстро найти дополнительный груз для вашего транспорта мы создали данную площадку. Здесь вы можете оставить свои запросы и найти соответствующий товар для вас. Успешные услуги по экспедированию грузов, перемещению и управлению проектной логистикой в нынешних реалиях. Поиск грузов от прямых заказчиков. Качественная информация.</p>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end about -->
+    <!-- work -->
+         <div id="work"  class="work">
+            <div class="container-fluid">
+               <div class="row d_flex">
+                  <div class="col-md-7">
+                     <div class="titlepage">
+                        <h2>Как это<span class="blu"> работает?</span></h2>
+                        <p>1. Регистрация  При входе нажимаете на вкладку регистрация и заполняете данные поля правильно.</p>
+                         <p>2. Удобства. после того как зарегистрировались на почту приходит сообщение с вашим логином и паролем.</p>
+                         <p>3. Отправьте запрос. Можете оставить свой запрос заполнив поля для заполнения.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-5">
+                     <div class="work_img">
+                        <figure><img src="{% static 'images/work_img.jpeg' %}" alt="#"/></figure>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end work -->
        {% block content %} {% endblock %}      <!-- end header inner -->
    </div>
      <br>
@@ -165,21 +200,17 @@
                      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="row">
                            <div class="col-md-8 col-sm-6">
-                              <div class="address">
-                                 <h3>Address </h3>
-                              </div>
-                              <ul class="location_icon">
-                                 <li>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, </li>
-                              </ul>
+
+
                            </div>
                            <div class="col-md-4 col-sm-6">
                               <div class="address">
-                                 <h3>Links</h3>
+                                 <h3>Страницы</h3>
                                  <ul class="Menu_footer">
-                                    <li class="active"> <a href="#">Home</a> </li>
-                                    <li><a href="#about">About </a> </li>
-                                    <li><a href="#work">Work</a> </li>
-                                    <li><a href="#contact">Contact </a> </li>
+                                    <li class="active"> <a href="#">Главная</a> </li>
+                                    <li><a href="#about">О нас</a> </li>
+                                    <li><a href="#work">Как это работает?</a> </li>
+                                    <li><a href="#contact">Контакты </a> </li>
                                  </ul>
                               </div>
                            </div>
@@ -189,25 +220,14 @@
                         <div class="row">
                            <div class="col-md-5 col-sm-6">
                               <div class="address">
-                                 <h3>Follow Us</h3>
+                                 <h3>Наши соц.сети</h3>
                               </div>
                               <ul class="social_icon">
                                  <li><a href="#">Facebook <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                 <li><a href="#"> Twitter<i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                 <li><a href="#"> Linkedin<i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                                 <li><a href="#"> Youtube<i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                                 <li><a href="#"> Instagram<i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                 <li><a href="#">Instagram<i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                               </ul>
                            </div>
-                           <div class="col-md-7 col-sm-6">
-                              <div class="address">
-                                 <h3>Newsletter </h3>
-                              </div>
-                              <form class="bottom_form">
-                                 <input class="enter" placeholder="Enter Your Email" type="text" name="Enter Your Email">
-                                 <button class="sub_btn">subscribe</button>
-                              </form>
-                           </div>
+
                         </div>
                      </div>
                   </div>
@@ -216,7 +236,7 @@
                   <div class="container">
                      <div class="row">
                         <div class="col-md-12">
-                           <p>Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free  html Templates</a></p>
+
                         </div>
                      </div>
                   </div>
